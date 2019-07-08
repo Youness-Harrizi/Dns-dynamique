@@ -20,8 +20,12 @@ public class MainClient {
         System.out.println("Enter the password\n");
         password=scanner.nextLine();
   //      Console console = System.console();
+        Console console = System.console();
+        if(console==null) System.out.println("CONSOLE EST NULLE");
+       // password=new String(console.readPassword("Enter the password"));
+       // System.out.println("the password is :"+password);
 
-//        password = new String(console.readPassword("Please enter your password: "));
+
 
         Client client=new Client(5555,serverName,password,domain);
         System.out.println(InetAddress.getLocalHost().getHostAddress());

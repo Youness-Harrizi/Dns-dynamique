@@ -1,19 +1,10 @@
 package server;
-
-import client.MessageClient;
-
 import java.io.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class CsvHandling {
-
-
-
-
-
-    // we should return a hash map
         public static  Boolean readCsv(String fileName,String[] clientValues) {
 
             File file=new File(fileName);
@@ -151,6 +142,7 @@ public class CsvHandling {
            }
            System.out.println(InetAddress.getLocalHost().getHostAddress());
            System.out.println(InetAddress.getByName("localhost"));
-        */}
+        */
+        }
     }
 
