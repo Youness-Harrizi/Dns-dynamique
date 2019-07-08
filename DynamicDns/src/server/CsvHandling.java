@@ -58,6 +58,7 @@ public class CsvHandling {
                         if (values[4].equals(clientValues[4])) {
                             System.out.println("ip didn't change");
                             scanner.close();
+                            return false;
 
 
                         } else if (values[4].equals(clientValues[3])) {
@@ -67,8 +68,9 @@ public class CsvHandling {
                             saveRecord(values[0],Integer.parseInt(clientValues[1]),Integer.parseInt(clientValues[2]),InetAddress.getByName(clientValues[3]),InetAddress.getByName(clientValues[4]),clientValues[5],fileName);
                             deleteRecord(compteur,fileName);
                             scanner.close();
+                            return true;
                         }
-                        return  true;
+
                         // continue
 
                     }
