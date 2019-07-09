@@ -19,7 +19,7 @@ public class GUIMain {
                     break;
                     }
             }
-            Client client=new Client(5555,f.getServerName(),f.getPassword(),f.getDomainName());
+            Client client=new Client(f.getPort(),f.getServerName(),f.getPassword(),f.getDomainName());
         }catch (Exception e){
             e.printStackTrace();
         }

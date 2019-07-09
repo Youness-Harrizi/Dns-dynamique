@@ -12,6 +12,7 @@ public class Client {
     private int port;
     private String password;
     private String domain;
+    private  Socket client;
 
     public InetAddress getLastIp() {
         return lastIp;
@@ -50,9 +51,14 @@ public class Client {
         this.setParameters("src/client/clientLastIp");
 
 
+        initClient(port, serverName, password, domain);
+    }
+
+
+    public void initClient(int port, String serverName, String password, String domain) {
         try {
             System.out.println("Connecting to " + serverName + " on port " + port);
-            Socket client = new Socket(serverName, port);
+            client= new Socket(serverName, port);
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
             sendAuthentificationMessage(client, message);
             // if connection is not finished send our normal message
@@ -144,6 +150,8 @@ public class Client {
         DataInputStream in = new DataInputStream(inFromServer);
         if(in==null){
             System.out.println("The connection was broke");
+            // close the socket in client side when it is closed in server side
+            client.close();
             return false;
         }
         try {
@@ -151,6 +159,7 @@ public class Client {
             client.close();
         }catch(EOFException e){
             System.out.println("The connection is over ....\n retry again ....");
+            return false;
         }
         return true;
 

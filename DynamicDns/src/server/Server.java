@@ -68,6 +68,13 @@ public class Server extends Thread{
                         + "\nGoodbye!");
                 //server.close();
 
+                // deleting unimportant files
+                File file1=new File("src/data2.csv");
+                if(file1.exists()) file1.delete();
+                File file2=new File("src/myTempFile.csv");
+                if(file2.exists()) file2.delete();
+
+
             } catch (SocketTimeoutException s) {
                 System.out.println("Socket timed out!");
                 break;

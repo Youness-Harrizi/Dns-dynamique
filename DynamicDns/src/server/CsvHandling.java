@@ -29,7 +29,7 @@ public class CsvHandling {
                     // let's compare the client values with the file values in terms of password and domain names
                     /*
                     0:domain , 3:lastIp , 4:ip , 5:password
-*/
+
                     System.out.println("les valeurs 0 sont \n");
                     System.out.println(""+values[0]+"  :  "+clientValues[0]);
                     System.out.println("les valeurs 1 sont \n");
@@ -42,7 +42,7 @@ public class CsvHandling {
                     System.out.println(""+values[4]+"  :  "+clientValues[4]);
                     System.out.println("les valeurs 5 sont \n");
                     System.out.println(""+values[5]+"  :  "+clientValues[5]);
-
+*/
 
                     if (values[0].equals(clientValues[0])&& values[5].equals(clientValues[5])) {
                         System.out.println("the domain and the password match\n");
@@ -176,6 +176,8 @@ public class CsvHandling {
             //saveRecord("domain1",5555,5555,InetAddress.getByName("facebook.com"),InetAddress.getByName("facebook.com"),"admin","src/data.csv");
             //deleteRecord(2,"src/data.csv");
            deleteEmptyLines("src/data.csv");
+
+
 
 
           /*

@@ -91,12 +91,13 @@ class MyFrame extends JFrame {
                 password=txtC.getText();
                 port=Integer.parseInt(txtD.getText());
                 MyFrame.super.dispose();
-
             }
         });
 
 
     }
 
-
+    public static int getPort() {
+        return port;
+    }
 }

@@ -12,14 +12,13 @@ public class MainClient {
         Scanner scanner=new Scanner(System.in);
 
          String serverName; String password; String domain;
-        // let do the scanner thing
+        // First choice : in command line
         System.out.println("Enter the server name\n");
         serverName=scanner.nextLine();
         System.out.println("Enter the domain name\n");
         domain=scanner.nextLine();
         System.out.println("Enter the password\n");
         password=scanner.nextLine();
-  //      Console console = System.console();
         Console console = System.console();
         if(console==null) System.out.println("CONSOLE EST NULLE");
        // password=new String(console.readPassword("Enter the password"));
@@ -29,9 +28,6 @@ public class MainClient {
 
         Client client=new Client(5555,serverName,password,domain);
         System.out.println(InetAddress.getLocalHost().getHostAddress());
-       // client.start();
-        //Client client=new Client(5555,"localhost","admin","domain1");
-
 
 
 
