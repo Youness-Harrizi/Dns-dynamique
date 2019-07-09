@@ -45,7 +45,11 @@ public class Server extends Thread{
               //  String[] clientValues={"domain5","5555","5555","216.58.198.78","157.240.195.00","admin4"};
 
                 Boolean check= CsvHandling.readCsv("src/data.csv",clientValues);
-                if(check) System.out.println("check is true");
+
+                if(check){
+                    System.out.println("check is true\n");
+                    CsvHandling.deleteEmptyLines("src/data.csv");
+                }
 
                 else {
                     System.out.println("check is false and the connexion is over ");

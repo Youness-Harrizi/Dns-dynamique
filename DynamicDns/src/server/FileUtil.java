@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public final class FileUtil {
     public static void main(String[]args){
-        copyFile("src/myTempFile.csv","src/data.csv");
+        copyFile("src/data2.csv","src/data.csv");
     }
 
     public static void copyFile(String from, String to) {
