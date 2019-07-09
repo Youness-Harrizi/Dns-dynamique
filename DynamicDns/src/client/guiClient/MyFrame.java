@@ -8,6 +8,7 @@ class MyFrame extends JFrame {
     protected static String serverName;
     protected static String domainName;
     protected static String password;
+    protected static int port;
 
     public String getServerName() {
         return serverName;
@@ -26,11 +27,13 @@ class MyFrame extends JFrame {
     private JTextField txtA = new JTextField();
     private JTextField txtB = new JTextField();
     private JPasswordField txtC = new JPasswordField(20);
+    private JTextField txtD = new JTextField();
 
 
     private JLabel lblA = new JLabel("server name :");
     private JLabel lblB = new JLabel("domain name :");
     private JLabel lblC = new JLabel("password :");
+    private JLabel lblD = new JLabel("port :");
 
     public MyFrame(){
         setTitle("Penjumlahan");
@@ -51,10 +54,12 @@ class MyFrame extends JFrame {
         txtA.setBounds(100,10,100,20);
         txtB.setBounds(100,35,100,20);
         txtC.setBounds(100,65,100,20);
+        txtD.setBounds(100,95,100,20);
 
         lblA.setBounds(20,10,100,20);
         lblB.setBounds(20,35,100,20);
         lblC.setBounds(20,65,100,20);
+        lblD.setBounds(20,95,100,20);
 
 
         add(submitButton);
@@ -63,10 +68,12 @@ class MyFrame extends JFrame {
         add(lblA);
         add(lblB);
         add(lblC);
+        add(lblD);
 
         add(txtA);
         add(txtB);
         add(txtC);
+        add(txtD);
     }
 
     private void initEvent(){
@@ -82,9 +89,8 @@ class MyFrame extends JFrame {
                 serverName=txtA.getText();
                 domainName=txtB.getText();
                 password=txtC.getText();
-
-
-
+                port=Integer.parseInt(txtD.getText());
+                MyFrame.super.dispose();
 
             }
         });

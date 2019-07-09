@@ -91,14 +91,13 @@ public class CsvHandling {
     }
 
 
-    private static void saveRecord(String domainName, int port, int lastport, InetAddress ip, InetAddress lastIp, String password, String fileName){
+    private static void saveRecord(String domainName, int lastPort, int port, InetAddress lastIp, InetAddress ip, String password, String fileName){
 
             try {
                 // the second parameter is the boolean append
                 FileWriter fileWriter=new FileWriter(fileName,true);
                 BufferedWriter bufferedWriter =new BufferedWriter(fileWriter);
-
-                bufferedWriter.write("\n"+domainName+","+lastport+","+port+","+lastIp.getHostAddress()+","+ip.getHostAddress()+","+password+"\n");
+                bufferedWriter.write("\n"+domainName+","+lastPort+","+port+","+lastIp.getHostAddress()+","+ip.getHostAddress()+","+password+"\n");
                 // make sure that all the data are written to the file
                 bufferedWriter.flush();
                 // close the stream
