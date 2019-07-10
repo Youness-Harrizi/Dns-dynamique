@@ -53,6 +53,10 @@ public class Server extends Thread{
                 else {
                     System.out.println("check is false and the connexion is over ");
                     server.close();
+                    // réintialiser le se
+                    serverSocket.close();
+                    serverSocket = new ServerSocket(port);
+                    serverSocket.setSoTimeout(10000000);
                     break;
                 }
                 // the client now will send now a hello message if the authentification is made

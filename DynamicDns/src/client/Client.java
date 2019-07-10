@@ -66,6 +66,7 @@ public class Client {
                 System.out.println("The file :"+"src/client/clients/"+fileDomainMap.get(domain));
                 changeLastIpFile("src/client/clients/"+fileDomainMap.get(domain));
             }
+
         }catch (IOException e) {
             e.printStackTrace();
         }
