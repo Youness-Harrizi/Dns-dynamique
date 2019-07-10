@@ -28,12 +28,12 @@ public class Server extends Thread{
                 // the client will send a message that contains ip
                 ObjectInputStream objectStream=new ObjectInputStream(server.getInputStream());
                 MessageClient messageClient=(MessageClient)objectStream.readObject();
-                System.out.println(messageClient);
+                //System.out.println(messageClient);
 
-                // now checking the authentification
+                /*now checking the authentification
                 System.out.println("the client message is... \n");
                 System.out.println(messageClient);
-
+*/
                 String[] clientValues={messageClient.getDomain(),""+messageClient.getLastPort(),
                        ""+ messageClient.getPort(),messageClient.getLastIp().getHostAddress(),
                         messageClient.getIp().getHostAddress(),messageClient.getPassword()};

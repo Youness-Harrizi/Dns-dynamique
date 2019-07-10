@@ -20,6 +20,14 @@ public class GUIMain {
                     }
             }
             Client client=new Client(f.getPort(),f.getServerName(),f.getPassword(),f.getDomainName());
+            if(client.getBool()) {
+                WelcomeFrame welcomeFrame = new WelcomeFrame(true);
+                welcomeFrame.setVisible(true);
+            }
+            else{
+                WelcomeFrame welcomeFrame = new WelcomeFrame(false);
+                welcomeFrame.setVisible(true);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }

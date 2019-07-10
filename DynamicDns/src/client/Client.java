@@ -15,8 +15,11 @@ public class Client {
     private String domain;
     private  Socket client;
     private  HashMap<String,String > fileDomainMap;
+    private Boolean bool=true;
 
-
+    public Boolean getBool() {
+        return bool;
+    }
 
     private String serverName;
 
@@ -34,10 +37,15 @@ public class Client {
         for(int i=0;i<5;i++){
             fileDomainMap.put("domain"+i,"clientLastIp"+i);
         }
+        String path=fileDomainMap.get(domain);
+        if(path==null){
+            this.bool=false;
+        }
+        else{
+            this.setParameters("src/client/clients/"+path);
+            initClient(port, serverName, password, domain);
+        }
 
-        this.setParameters("src/client/clients/"+fileDomainMap.get(domain));
-
-        initClient(port, serverName, password, domain);
     }
 
 
@@ -50,7 +58,7 @@ public class Client {
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
             sendAuthentificationMessage(client, message);
             // if connection is not finished send our normal message
-            Boolean bool = sendMessage(client);
+             bool = sendMessage(client);
             // the lastIp should be the newIp if there was a change after that
             // on ne change l'ip que si on a recu un message du serveur
             if (setChanged() && bool) {
