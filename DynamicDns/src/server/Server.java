@@ -21,8 +21,7 @@ public class Server extends Thread{
         while (true) {
             try {
 
-                System.out.println("Waiting for client on port " +
-                        serverSocket.getLocalPort() + "...");
+                System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
                 Socket server = serverSocket.accept();
 
                 System.out.println("Just connected to " + server.getRemoteSocketAddress());
@@ -68,7 +67,7 @@ public class Server extends Thread{
                         + "\nGoodbye!");
                 //server.close();
 
-                // deleting unimportant files
+                // deleting non important files
                 File file1=new File("src/data2.csv");
                 if(file1.exists()) file1.delete();
                 File file2=new File("src/myTempFile.csv");

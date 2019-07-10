@@ -1,13 +1,8 @@
 package server;
-import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-
 public final class FileUtil {
     public static void main(String[]args){
         copyFile("src/data2.csv","src/data.csv");

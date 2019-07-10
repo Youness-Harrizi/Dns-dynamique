@@ -44,7 +44,8 @@ public class MessageClient implements Serializable {
         this.password=password;
         this.domain=domain;
     }
-    public String toString(){
+    public String toString()
+    {
         return "domain :"+domain+" ip "+ip.getHostAddress()+"last ip :"+ lastIp.getHostAddress()
                 + " port "+port+"lastPort :"+lastPort+ "and his password is :"+password;
 

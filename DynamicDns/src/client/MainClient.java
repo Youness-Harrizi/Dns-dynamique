@@ -5,9 +5,6 @@ import java.util.Scanner;
 
 public class MainClient {
     public static void main(String[] args) throws java.io.IOException{
-        // changer l'ip du client chaque fois
-        // 0: fill the data.csv
-        //1:create 10 clients (example)
 
         Scanner scanner=new Scanner(System.in);
 

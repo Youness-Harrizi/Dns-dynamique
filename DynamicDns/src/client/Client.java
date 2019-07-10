@@ -3,6 +3,7 @@ package client;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Client {
@@ -13,30 +14,9 @@ public class Client {
     private String password;
     private String domain;
     private  Socket client;
+    private  HashMap<String,String > fileDomainMap;
 
-    public InetAddress getLastIp() {
-        return lastIp;
-    }
 
-    public InetAddress getIp() {
-        return ip;
-    }
-
-    public int getLastPort() {
-        return lastPort;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getServerName() {
-        return serverName;
-    }
 
     private String serverName;
 
@@ -48,15 +28,23 @@ public class Client {
         this.lastPort=port;
         this.port = port;
         this.password=password;
-        this.setParameters("src/client/clientLastIp");
 
+
+        fileDomainMap=new HashMap<>(0);
+        for(int i=0;i<5;i++){
+            fileDomainMap.put("domain"+i,"clientLastIp"+i);
+        }
+
+        this.setParameters("src/client/clients/"+fileDomainMap.get(domain));
 
         initClient(port, serverName, password, domain);
     }
 
 
+
     public void initClient(int port, String serverName, String password, String domain) {
         try {
+
             System.out.println("Connecting to " + serverName + " on port " + port);
             client= new Socket(serverName, port);
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
@@ -67,7 +55,8 @@ public class Client {
             // on ne change l'ip que si on a recu un message du serveur
             if (setChanged() && bool) {
                 System.out.println("last Ip has changed");
-                changeLastIpFile("src/client/clientLastIp");
+                System.out.println("The file :"+"src/client/clients/"+fileDomainMap.get(domain));
+                changeLastIpFile("src/client/clients/"+fileDomainMap.get(domain));
             }
         }catch (IOException e) {
             e.printStackTrace();
@@ -97,6 +86,7 @@ public class Client {
     public void setParameters(String fileName) throws java.net.UnknownHostException{
         // to be geneeralized
         this.lastIp=readLastIp(fileName);
+        System.out.println("Last IP is "+ lastIp);
         this.ip=InetAddress.getLocalHost();
 
     }
@@ -104,6 +94,7 @@ public class Client {
     private InetAddress readLastIp(String fileName) {
         // read the LastIp and then change it to the
         try {
+            System.out.println("I am reading my Last IP...");
             String lastIp="";
             File file=new File(fileName);
             if (file.exists()) System.out.println("file does exist");

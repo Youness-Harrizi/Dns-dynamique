@@ -5,9 +5,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 public class CsvHandling {
-    // return true if
         public static  Boolean readCsv(String fileName,String[] clientValues) {
-
             File file=new File(fileName);
             if (file.exists()){
                 System.out.println("file does exist");
@@ -23,13 +21,12 @@ public class CsvHandling {
                 while(scanner.hasNext()){
                     compteur++;//line starts from 0
                     String data=scanner.next();
-                    //System.out.println(data);
                     String[]values= data.split(",");
-                    //System.out.println(values[1]);
+
                     // let's compare the client values with the file values in terms of password and domain names
                     /*
                     0:domain , 3:lastIp , 4:ip , 5:password
-
+*/
                     System.out.println("les valeurs 0 sont \n");
                     System.out.println(""+values[0]+"  :  "+clientValues[0]);
                     System.out.println("les valeurs 1 sont \n");
@@ -42,7 +39,7 @@ public class CsvHandling {
                     System.out.println(""+values[4]+"  :  "+clientValues[4]);
                     System.out.println("les valeurs 5 sont \n");
                     System.out.println(""+values[5]+"  :  "+clientValues[5]);
-*/
+
 
                     if (values[0].equals(clientValues[0])&& values[5].equals(clientValues[5])) {
                         System.out.println("the domain and the password match\n");
@@ -52,6 +49,7 @@ public class CsvHandling {
                             scanner.close();
                             // if LastIP of data.csv isn't equal to lastIP of the client
                             // it's not important but just for form
+
                             if(!values[3].equals(clientValues[3])){
                                 System.out.println("We should update the Last Ip\n");
                                 updateDataServer(fileName, clientValues, compteur, values[0]);
@@ -116,8 +114,6 @@ public class CsvHandling {
           File inputFile = new File(fileName);
           File tempFile = new File("src/myTempFile.csv");
           try {
-
-
               BufferedReader reader = new BufferedReader(new FileReader(inputFile));
               BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
               int compteur=-1;
@@ -173,22 +169,9 @@ public class CsvHandling {
         // application
        public static void main(String[] args) throws UnknownHostException {
             String[] clientValues={"domain1","5555","5555","127.0.0.1","127.0.0.1","admin"};
-            //saveRecord("domain1",5555,5555,InetAddress.getByName("facebook.com"),InetAddress.getByName("facebook.com"),"admin","src/data.csv");
-            //deleteRecord(2,"src/data.csv");
-           deleteEmptyLines("src/data.csv");
+             deleteEmptyLines("src/data.csv");
 
 
-
-
-          /*
-            Boolean check= readCsv("src/data.csv",clientValues);
-           if(check) System.out.println("check is true");
-           else{
-               System.out.println("check is false");
-           }
-           System.out.println(InetAddress.getLocalHost().getHostAddress());
-           System.out.println(InetAddress.getByName("localhost"));
-        */
         }
     }
 
