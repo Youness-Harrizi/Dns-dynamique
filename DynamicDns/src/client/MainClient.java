@@ -4,6 +4,10 @@ import java.net.InetAddress;
 import java.util.Scanner;
 
 public class MainClient {
+    /**
+     * parametres sont:
+     *  -Djavax.net.ssl.trustStore=keystore -Djavax.net.ssl.trustStorePassword=password
+     */
     public static void main(String[] args) throws java.io.IOException{
 
         Scanner scanner=new Scanner(System.in);
@@ -18,11 +22,6 @@ public class MainClient {
         password=scanner.nextLine();
         Console console = System.console();
         if(console==null) System.out.println("CONSOLE EST NULLE");
-       // password=new String(console.readPassword("Enter the password"));
-       // System.out.println("the password is :"+password);
-
-
-
         Client client=new Client(5555,serverName,password,domain);
         System.out.println(InetAddress.getLocalHost().getHostAddress());
 

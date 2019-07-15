@@ -1,8 +1,10 @@
 package server;
 import client.MessageClient;
 
+import javax.net.ssl.SSLServerSocketFactory;
 import java.io.*;
 import java.net.*;
+import java.util.Scanner;
 
 public class Server extends Thread{
 
@@ -11,13 +13,16 @@ public class Server extends Thread{
 
     public Server(int port) throws IOException {
         super();
-        serverSocket = new ServerSocket(port);
+        SSLServerSocketFactory sslServerSocketFactory =
+                (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
+        serverSocket =sslServerSocketFactory.createServerSocket(port);
         serverSocket.setSoTimeout(10000000);
         this.port=port;
 
     }
 
     public void run() {
+
         while (true) {
             try {
 
@@ -25,23 +30,18 @@ public class Server extends Thread{
                 Socket server = serverSocket.accept();
 
                 System.out.println("Just connected to " + server.getRemoteSocketAddress());
+              //  ReceiveSimpleMessages(server);
+
                 // the client will send a message that contains ip
                 ObjectInputStream objectStream=new ObjectInputStream(server.getInputStream());
                 MessageClient messageClient=(MessageClient)objectStream.readObject();
-                //System.out.println(messageClient);
 
-                /*now checking the authentification
-                System.out.println("the client message is... \n");
-                System.out.println(messageClient);
-*/
+
                 String[] clientValues={messageClient.getDomain(),""+messageClient.getLastPort(),
                        ""+ messageClient.getPort(),messageClient.getLastIp().getHostAddress(),
                         messageClient.getIp().getHostAddress(),messageClient.getPassword()};
 
 
-
-
-              //  String[] clientValues={"domain5","5555","5555","216.58.198.78","157.240.195.00","admin4"};
 
                 Boolean check= CsvHandling.readCsv("src/data.csv",clientValues);
 
@@ -88,6 +88,38 @@ public class Server extends Thread{
                 e.printStackTrace();
             }
         }
+    }
+
+    // test test
+
+    private void ReceiveSimpleMessages(Socket socket) {
+
+        try {
+
+            System.out.println("SSL ServerSocket started");
+
+
+            System.out.println("ServerSocket accepted");
+
+
+
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            try (BufferedReader bufferedReader =
+                         new BufferedReader(
+                                 new InputStreamReader(socket.getInputStream()))) {
+                String line;
+                while((line = bufferedReader.readLine()) != null){
+                    System.out.println(line);
+
+                    out.println("message received");
+                }
+            }
+            System.out.println("Closed");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
 }

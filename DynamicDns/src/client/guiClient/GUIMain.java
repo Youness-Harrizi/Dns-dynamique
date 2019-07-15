@@ -5,6 +5,10 @@ import client.Client;
 import java.io.IOException;
 
 public class GUIMain {
+    /**
+     * paramètres sont:
+     *  -Djavax.net.ssl.trustStore=keystore -Djavax.net.ssl.trustStorePassword=password
+     */
     public static void main(String[] args)  {
         try {
             MyFrame f = new MyFrame();

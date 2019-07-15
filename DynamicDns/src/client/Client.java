@@ -1,5 +1,6 @@
 package client;
 
+import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -51,12 +52,26 @@ public class Client {
 
 
     public void initClient(int port, String serverName, String password, String domain) {
+        // creating our ssl maker
+        SSLSocketFactory sslSocketFactory =
+                (SSLSocketFactory)SSLSocketFactory.getDefault();
         try {
 
             System.out.println("Connecting to " + serverName + " on port " + port);
-            client= new Socket(serverName, port);
+            // ssl client
+            client= sslSocketFactory.createSocket(serverName, port);
+
+
+
+            // test test
+           // sendSimpleMessages(client);
+
+
+
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
             sendAuthentificationMessage(client, message);
+
+
             // if connection is not finished send our normal message
              bool = sendMessage(client);
             // the lastIp should be the newIp if there was a change after that
@@ -70,6 +85,32 @@ public class Client {
         }catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void sendSimpleMessages(Socket socket) {
+        try {
+
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            try (BufferedReader bufferedReader =
+                         new BufferedReader(
+                                 new InputStreamReader(socket.getInputStream()))) {
+                Scanner scanner = new Scanner(System.in);
+                while(true){
+                    System.out.println("Enter something:");
+                    String inputLine = scanner.nextLine();
+                    if(inputLine.equals("q")){
+                        break;
+                    }
+                    // sending the message to the server
+                    out.println(inputLine);
+                    System.out.println(bufferedReader.readLine());
+                }
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     private void changeLastIpFile(String fileName) {

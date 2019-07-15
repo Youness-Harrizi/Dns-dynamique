@@ -37,7 +37,7 @@ class MyFrame extends JFrame {
 
     public MyFrame(){
         setTitle("Penjumlahan");
-        setSize(400,200);
+        setSize(800,400);
         setLocation(new Point(300,200));
         setLayout(null);
         setResizable(false);
@@ -51,15 +51,15 @@ class MyFrame extends JFrame {
        // btnTutup.setBounds(300,130, 80,25);
         submitButton.setBounds(300,100, 80,25);
 
-        txtA.setBounds(100,10,100,20);
-        txtB.setBounds(100,35,100,20);
-        txtC.setBounds(100,65,100,20);
-        txtD.setBounds(100,95,100,20);
+        txtA.setBounds(150,10,100,20);
+        txtB.setBounds(150,55,100,20);
+        txtC.setBounds(150,105,100,20);
+        txtD.setBounds(150,155,100,20);
 
         lblA.setBounds(20,10,100,20);
-        lblB.setBounds(20,35,100,20);
-        lblC.setBounds(20,65,100,20);
-        lblD.setBounds(20,95,100,20);
+        lblB.setBounds(20,55,100,20);
+        lblC.setBounds(20,105,100,20);
+        lblD.setBounds(20,155,100,20);
 
 
         add(submitButton);
