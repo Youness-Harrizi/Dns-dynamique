@@ -13,10 +13,8 @@ public class Server extends Thread{
 
     public Server(int port) throws IOException {
         super();
-        SSLServerSocketFactory sslServerSocketFactory =
-                (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
-        serverSocket =sslServerSocketFactory.createServerSocket(port);
-        serverSocket.setSoTimeout(10000000);
+
+
         this.port=port;
 
     }
@@ -25,6 +23,10 @@ public class Server extends Thread{
 
         while (true) {
             try {
+                SSLServerSocketFactory sslServerSocketFactory =
+                        (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
+                serverSocket =sslServerSocketFactory.createServerSocket(port);
+                serverSocket.setSoTimeout(10000000);
 
                 System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
                 Socket server = serverSocket.accept();
@@ -44,21 +46,13 @@ public class Server extends Thread{
 
 
                 Boolean check= CsvHandling.readCsv("src/data.csv",clientValues);
-
+                // si tout ce passe bien
                 if(check){
                     System.out.println("check is true\n");
                     CsvHandling.deleteEmptyLines("src/data.csv");
-                }
 
-                else {
-                    System.out.println("check is false and the connexion is over ");
-                    server.close();
-                    // réintialiser le se
-                    serverSocket.close();
-                    serverSocket = new ServerSocket(port);
-                    serverSocket.setSoTimeout(10000000);
-                    break;
-                }
+
+
                 // the client now will send now a hello message if the authentification is made
                 System.out.println("\n the communication is ok .... \n ");
 
@@ -75,7 +69,14 @@ public class Server extends Thread{
                 File file1=new File("src/data2.csv");
                 if(file1.exists()) file1.delete();
                 File file2=new File("src/myTempFile.csv");
-                if(file2.exists()) file2.delete();
+                if(file2.exists()) file2.delete();}
+                else {
+                    System.out.println("check is false and the connexion is over ");
+                    server.close();
+                    serverSocket.close();
+
+                    break;
+                }
 
 
             } catch (SocketTimeoutException s) {

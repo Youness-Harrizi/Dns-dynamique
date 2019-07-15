@@ -10,7 +10,8 @@ public class WelcomeFrame extends JFrame {
 
     public WelcomeFrame(Boolean successful){
         super("Welcome client ") ; // Window title
-        this.setSize(500,200);
+        this.setSize(600,200);
+        this.setLocationRelativeTo(null);
         this.setLayout(new BorderLayout());
 
         setBackground(Color.BLUE);

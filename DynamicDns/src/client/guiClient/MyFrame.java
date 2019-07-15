@@ -9,6 +9,7 @@ class MyFrame extends JFrame {
     protected static String domainName;
     protected static String password;
     protected static int port;
+    public Font font= new Font("Arial",Font.BOLD,15);
 
     public String getServerName() {
         return serverName;
@@ -35,6 +36,7 @@ class MyFrame extends JFrame {
     private JLabel lblC = new JLabel("password :");
     private JLabel lblD = new JLabel("port :");
 
+
     public MyFrame(){
         setTitle("Penjumlahan");
         setSize(800,400);
@@ -51,15 +53,15 @@ class MyFrame extends JFrame {
        // btnTutup.setBounds(300,130, 80,25);
         submitButton.setBounds(300,100, 80,25);
 
-        txtA.setBounds(150,10,100,20);
-        txtB.setBounds(150,55,100,20);
-        txtC.setBounds(150,105,100,20);
-        txtD.setBounds(150,155,100,20);
+        txtA.setBounds(150,10,100,40);
+        txtB.setBounds(150,55,100,40);
+        txtC.setBounds(150,105,100,40);
+        txtD.setBounds(150,155,100,40);
 
-        lblA.setBounds(20,10,100,20);
-        lblB.setBounds(20,55,100,20);
-        lblC.setBounds(20,105,100,20);
-        lblD.setBounds(20,155,100,20);
+        lblA.setBounds(20,10,100,20);lblA.setFont(font);
+        lblB.setBounds(20,55,100,20);lblB.setFont(font);
+        lblC.setBounds(20,105,100,20);lblC.setFont(font);
+        lblD.setBounds(20,155,100,20);lblD.setFont(font);
 
 
         add(submitButton);

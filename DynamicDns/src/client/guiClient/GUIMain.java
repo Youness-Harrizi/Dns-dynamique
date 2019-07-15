@@ -16,7 +16,7 @@ public class GUIMain {
 
 
             while(true ) {
-                System.out.println(f.getPassword());
+                System.out.println("");
                 if (f.getPassword() != null) {
 
 
