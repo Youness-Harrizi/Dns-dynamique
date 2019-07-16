@@ -51,7 +51,8 @@ class MyFrame extends JFrame {
 
     private void initComponent(){
        // btnTutup.setBounds(300,130, 80,25);
-        submitButton.setBounds(300,100, 80,25);
+        submitButton.setBounds(300,100, 140,50);
+        submitButton.setFont(font);
 
         txtA.setBounds(150,10,100,40);
         txtB.setBounds(150,55,100,40);

@@ -187,6 +187,7 @@ public class Client {
         DataOutputStream out = new DataOutputStream(outToServer);
 
         out.writeUTF("Hello from " + client.getLocalSocketAddress());
+
         InputStream inFromServer = client.getInputStream();
         DataInputStream in = new DataInputStream(inFromServer);
         if(in==null){
@@ -197,6 +198,8 @@ public class Client {
         }
         try {
             System.out.println("Server says " + in.readUTF());
+            // sending simple messages (optional)
+            sendSimpleMessages(client);
             client.close();
         }catch(EOFException e){
             System.out.println("The connection is over ....\n retry again ....");

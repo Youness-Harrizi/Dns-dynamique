@@ -16,17 +16,19 @@ public class Server extends Thread{
 
 
         this.port=port;
+        SSLServerSocketFactory sslServerSocketFactory =
+                (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
+        serverSocket =sslServerSocketFactory.createServerSocket(port);
+        serverSocket.setSoTimeout(10000000);
 
     }
 
     public void run() {
 
+
         while (true) {
             try {
-                SSLServerSocketFactory sslServerSocketFactory =
-                        (SSLServerSocketFactory)SSLServerSocketFactory.getDefault();
-                serverSocket =sslServerSocketFactory.createServerSocket(port);
-                serverSocket.setSoTimeout(10000000);
+
 
                 System.out.println("Waiting for client on port " + serverSocket.getLocalPort() + "...");
                 Socket server = serverSocket.accept();
@@ -62,7 +64,9 @@ public class Server extends Thread{
                 System.out.println(in.readUTF());
                 DataOutputStream out = new DataOutputStream(server.getOutputStream());
                 out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress()
-                        + "\nGoodbye!");
+                        + "\nDo you want to add something");
+                receiveSimpleMessages(server);
+
                 //server.close();
 
                 // deleting non important files
@@ -72,7 +76,7 @@ public class Server extends Thread{
                 if(file2.exists()) file2.delete();}
                 else {
                     System.out.println("check is false and the connexion is over ");
-                    server.close();
+                    server.close(); 
                     serverSocket.close();
 
                     break;
@@ -93,7 +97,7 @@ public class Server extends Thread{
 
     // test test
 
-    private void ReceiveSimpleMessages(Socket socket) {
+    private void receiveSimpleMessages(Socket socket) {
 
         try {
 
