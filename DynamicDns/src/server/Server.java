@@ -64,7 +64,7 @@ public class Server extends Thread{
                 System.out.println(in.readUTF());
                 DataOutputStream out = new DataOutputStream(server.getOutputStream());
                 out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress()
-                        + "\nDo you want to add something");
+                        + "\nDo you want to add something\n press q to quit");
                 receiveSimpleMessages(server);
 
                 //server.close();
@@ -77,9 +77,9 @@ public class Server extends Thread{
                 else {
                     System.out.println("check is false and the connexion is over ");
                     server.close(); 
-                    serverSocket.close();
 
-                    break;
+
+
                 }
 
 

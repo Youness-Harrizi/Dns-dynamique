@@ -13,11 +13,9 @@ public class Client {
     private int lastPort;
     private int port;
     private String password;
-    private String domain;
     private  Socket client;
-    private  HashMap<String,String > fileDomainMap;
+    private  HashMap<String,String> fileDomainMap;
     private Boolean bool=true;
-
     public Boolean getBool() {
         return bool;
     }
@@ -36,10 +34,11 @@ public class Client {
 
         fileDomainMap=new HashMap<>(0);
         for(int i=0;i<5;i++){
-            fileDomainMap.put("domain"+i,"clientLastIp"+i);
+            fileDomainMap.put("domain"+i,"" +"clientLastIp"+i);
         }
         String path=fileDomainMap.get(domain);
-        if(path==null){
+        if(path==null)
+        {
             this.bool=false;
         }
         else{
@@ -53,20 +52,12 @@ public class Client {
 
     public void initClient(int port, String serverName, String password, String domain) {
         // creating our ssl maker
-        SSLSocketFactory sslSocketFactory =
-                (SSLSocketFactory)SSLSocketFactory.getDefault();
+        SSLSocketFactory sslSocketFactory =(SSLSocketFactory)SSLSocketFactory.getDefault();
         try {
 
             System.out.println("Connecting to " + serverName + " on port " + port);
             // ssl client
             client= sslSocketFactory.createSocket(serverName, port);
-
-
-
-            // test test
-           // sendSimpleMessages(client);
-
-
 
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
             sendAuthentificationMessage(client, message);
@@ -89,11 +80,8 @@ public class Client {
 
     private void sendSimpleMessages(Socket socket) {
         try {
-
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            try (BufferedReader bufferedReader =
-                         new BufferedReader(
-                                 new InputStreamReader(socket.getInputStream()))) {
+            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                 Scanner scanner = new Scanner(System.in);
                 while(true){
                     System.out.println("Enter something:");
@@ -165,6 +153,7 @@ public class Client {
 
     // this will return true if a certain parameter has been changed
     public boolean setChanged() {
+
         return (lastPort != port || lastIp != ip);
     }
 

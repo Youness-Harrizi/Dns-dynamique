@@ -9,7 +9,9 @@ class MyFrame extends JFrame {
     protected static String domainName;
     protected static String password;
     protected static int port;
-    public Font font= new Font("Arial",Font.BOLD,15);
+    public final  Font font= new Font("Arial",Font.BOLD,18);
+    public final Font textFont=new Font("Arial",Font.BOLD,15);
+
 
     public String getServerName() {
         return serverName;
@@ -38,36 +40,34 @@ class MyFrame extends JFrame {
 
 
     public MyFrame(){
-        setTitle("Penjumlahan");
+        setTitle("DYNDNS");
         setSize(800,400);
         setLocation(new Point(300,200));
         setLayout(null);
         setResizable(false);
-        // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         initComponent();
         initEvent();
     }
 
     private void initComponent(){
-       // btnTutup.setBounds(300,130, 80,25);
-        submitButton.setBounds(300,100, 140,50);
+        submitButton.setBounds(400,100, 140,50);
+        submitButton.setBackground(Color.CYAN);
         submitButton.setFont(font);
 
-        txtA.setBounds(150,10,100,40);
-        txtB.setBounds(150,55,100,40);
-        txtC.setBounds(150,105,100,40);
-        txtD.setBounds(150,155,100,40);
+        txtA.setBounds(220,10,100,30);txtA.setFont(textFont);
+        txtB.setBounds(220,55,100,30);txtB.setFont(textFont);
+        txtC.setBounds(220,105,100,30);txtC.setFont(textFont);
+        txtD.setBounds(220,155,100,30);txtD.setFont(textFont);
 
-        lblA.setBounds(20,10,100,20);lblA.setFont(font);
-        lblB.setBounds(20,55,100,20);lblB.setFont(font);
-        lblC.setBounds(20,105,100,20);lblC.setFont(font);
-        lblD.setBounds(20,155,100,20);lblD.setFont(font);
+        lblA.setBounds(20,10,150,20);lblA.setFont(font);
+        lblB.setBounds(20,55,150,20);lblB.setFont(font);
+        lblC.setBounds(20,105,150,20);lblC.setFont(font);
+        lblD.setBounds(20,155,150,20);lblD.setFont(font);
 
 
         add(submitButton);
-        //add(btnTambah);
-
+        
         add(lblA);
         add(lblB);
         add(lblC);
@@ -86,7 +86,6 @@ class MyFrame extends JFrame {
 
             }
         });
-
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 serverName=txtA.getText();
@@ -96,8 +95,6 @@ class MyFrame extends JFrame {
                 MyFrame.super.dispose();
             }
         });
-
-
     }
 
     public static int getPort() {

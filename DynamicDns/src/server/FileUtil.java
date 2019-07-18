@@ -8,8 +8,10 @@ public final class FileUtil {
         copyFile("src/data2.csv","src/data.csv");
     }
 
-    public static void copyFile(String from, String to) {
-        copyFile(from, to, Boolean.TRUE);
+    public static void copyFile(String from, String to)
+    {
+        copyFile(from, to, true);
+
     }
 
     public static void copyFile(String from, String to, Boolean overwrite) {
@@ -54,13 +56,12 @@ public final class FileUtil {
             FileInputStream fis = null;
             FileOutputStream fos = null;
             try {
-
                 fis = new FileInputStream(fromFile);
                 fos = new FileOutputStream(toFile);
                 byte[] buffer = new byte[4096];
                 int bytesRead;
-
-                while ((bytesRead = fis.read(buffer)) != -1) {
+                while ((bytesRead = fis.read(buffer)) != -1)
+                {
                     fos.write(buffer, 0, bytesRead);
                 }
 

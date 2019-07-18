@@ -11,9 +11,7 @@ public class MainClient {
     public static void main(String[] args) throws java.io.IOException{
 
         Scanner scanner=new Scanner(System.in);
-
-         String serverName; String password; String domain;
-        // First choice : in command line
+        String serverName; String password; String domain;
         System.out.println("Enter the server name\n");
         serverName=scanner.nextLine();
         System.out.println("Enter the domain name\n");
