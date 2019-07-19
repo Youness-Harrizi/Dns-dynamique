@@ -19,6 +19,8 @@ public class Client {
     public Boolean getBool() {
         return bool;
     }
+    // this can be changed
+    public static int  nbreClients=5;
 
     private String serverName;
 
@@ -33,7 +35,7 @@ public class Client {
 
 
         fileDomainMap=new HashMap<>(0);
-        for(int i=0;i<5;i++){
+        for(int i=1;i<nbreClients+1;i++){
             fileDomainMap.put("domain"+i,"" +"clientLastIp"+i);
         }
         String path=fileDomainMap.get(domain);
@@ -41,7 +43,7 @@ public class Client {
         {
             this.bool=false;
         }
-        else{
+        else {
             this.setParameters("src/client/clients/"+path);
             initClient(port, serverName, password, domain);
         }
@@ -57,7 +59,12 @@ public class Client {
 
             System.out.println("Connecting to " + serverName + " on port " + port);
             // ssl client
-            client= sslSocketFactory.createSocket(serverName, port);
+            try {
+                client = sslSocketFactory.createSocket(serverName, port);
+            }catch (Exception e){
+                System.err.println("The server name that you put isn't valid");
+                System.exit(0);
+            }
 
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
             sendAuthentificationMessage(client, message);

@@ -97,7 +97,8 @@ class MyFrame extends JFrame {
         });
     }
 
-    public static int getPort() {
+    public static int getPort()
+    {
         return port;
     }
 }

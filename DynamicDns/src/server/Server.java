@@ -4,7 +4,6 @@ import client.MessageClient;
 import javax.net.ssl.SSLServerSocketFactory;
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 
 public class Server extends Thread{
 

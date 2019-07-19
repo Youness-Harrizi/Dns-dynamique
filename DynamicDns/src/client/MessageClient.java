@@ -36,7 +36,8 @@ public class MessageClient implements Serializable {
     private String password;
     private String domain;
 
-    public MessageClient(String domain,InetAddress lastIp, InetAddress newIp , int lastPort, int newPort, String password){
+    public MessageClient(String domain,InetAddress lastIp, InetAddress newIp , int lastPort, int newPort, String password)
+    {
         this.lastIp=lastIp;
         this.ip=newIp;
         this.lastPort=lastPort;
