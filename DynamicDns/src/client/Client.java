@@ -19,8 +19,8 @@ public class Client {
     public Boolean getBool() {
         return bool;
     }
-    // this can be changed
-    public static int  nbreClients=5;
+    // the max numbre of clients the server can handle
+    public static int nbreClientsMax =1000;
 
     private String serverName;
 
@@ -35,7 +35,7 @@ public class Client {
 
 
         fileDomainMap=new HashMap<>(0);
-        for(int i=1;i<nbreClients+1;i++){
+        for(int i = 1; i< nbreClientsMax +1; i++){
             fileDomainMap.put("domain"+i,"" +"clientLastIp"+i);
         }
         String path=fileDomainMap.get(domain);
@@ -194,7 +194,6 @@ public class Client {
         }
         try {
             System.out.println("Server says " + in.readUTF());
-            // sending simple messages (optional)
             sendSimpleMessages(client);
             client.close();
         }catch(EOFException e){
