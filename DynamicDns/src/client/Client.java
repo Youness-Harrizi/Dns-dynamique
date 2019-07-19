@@ -62,13 +62,12 @@ public class Client {
             try {
                 client = sslSocketFactory.createSocket(serverName, port);
             }catch (Exception e){
-                System.err.println("The server name that you put isn't valid");
+                System.err.println("The server name that you've put isn't valid");
                 System.exit(0);
             }
 
             MessageClient message = new MessageClient(domain, lastIp, ip, lastPort, port, password);
             sendAuthentificationMessage(client, message);
-
 
             // if connection is not finished send our normal message
              bool = sendMessage(client);
@@ -115,7 +114,7 @@ public class Client {
             FileWriter fileWriter=new FileWriter(fileName,false);
             BufferedWriter bufferedWriter =new BufferedWriter(fileWriter);
             bufferedWriter.write(this.ip.getHostAddress());
-            bufferedWriter.close(); // c'est necessaire
+            bufferedWriter.close(); // c'est necessaire (ou on fait du flush pour vider notre buffer)
             String newIp=this.ip.getHostAddress();
             System.out.println(newIp);
 
@@ -181,9 +180,7 @@ public class Client {
         System.out.println("Just connected to " + client.getRemoteSocketAddress());
         OutputStream outToServer = client.getOutputStream();
         DataOutputStream out = new DataOutputStream(outToServer);
-
         out.writeUTF("Hello from " + client.getLocalSocketAddress());
-
         InputStream inFromServer = client.getInputStream();
         DataInputStream in = new DataInputStream(inFromServer);
         if(in==null){

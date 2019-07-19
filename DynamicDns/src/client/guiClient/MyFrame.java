@@ -9,7 +9,7 @@ class MyFrame extends JFrame {
     protected static String domainName;
     protected static String password;
     protected static int port;
-    public final  Font font= new Font("Arial",Font.BOLD,18);
+    public final  Font font= new Font("Algerian",Font.BOLD,18);
     public final Font textFont=new Font("Arial",Font.BOLD,15);
 
 
