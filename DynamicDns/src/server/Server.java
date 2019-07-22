@@ -63,7 +63,7 @@ public class Server extends Thread{
                 System.out.println(in.readUTF());
                 DataOutputStream out = new DataOutputStream(server.getOutputStream());
                 out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress()
-                        + "\nDo you want to add something\n press q to quit");
+                        + "\nDo you want to add something\n");
                 receiveSimpleMessages(server);
 
                 //server.close();
@@ -113,9 +113,10 @@ public class Server extends Thread{
                                  new InputStreamReader(socket.getInputStream()))) {
                 String line;
                 while((line = bufferedReader.readLine()) != null){
-                    System.out.println(line);
+                    System.out.println("The client says :"+line);
 
                     out.println("message received");
+                    out.flush();
                 }
             }
             System.out.println("Closed");

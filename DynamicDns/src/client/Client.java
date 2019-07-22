@@ -6,6 +6,7 @@ import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -96,7 +97,6 @@ public class Client {
     private void sendSimpleMessages(Socket socket) {
         try {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
                 //Scanner scanner = new Scanner(System.in);
                 String text = "";
                 TextingFrame textingFrame = new TextingFrame();
@@ -110,30 +110,25 @@ public class Client {
                     }*/
                     while(true) {
                         String text2 = textingFrame.getText();
-                        //System.out.println(text2);
+                        System.out.println("text2=" +text2);
                         if (!text2.equals(text)) {
-                            //System.out.println("I am here 2");
+                            System.out.println("text2 has changed");
                             text = text2;
                             out.println(text);
-                            System.out.println(bufferedReader.readLine());
+                            System.out.println("sending message ...\n");
+
+
                         }
+
 
 
                         if (text.equals("quit")) {
                             System.out.println("I am ready to quit");
                             break;
-
-
-
-                            // sending the message to the server
-
-
                         }
                     }
 
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+
 
         }catch (IOException e){
             e.printStackTrace();
@@ -239,15 +234,12 @@ public class Client {
         }
         try {
             System.out.println("Server says " + in.readUTF());
-            /**
-             * while(true){
-             * sendSimpleMessages(client,text)????
-             * }
-             *
-             */
             sendSimpleMessages(client);
             client.close();
         }catch(EOFException e){
+            System.out.println("The connection is over ....\n retry again ....");
+            return false;
+        }catch (SocketException ex){
             System.out.println("The connection is over ....\n retry again ....");
             return false;
         }
