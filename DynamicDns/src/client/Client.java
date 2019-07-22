@@ -63,6 +63,8 @@ public class Client {
 
 
     public void initClient(int port, String serverName, String password, String domain) {
+
+
         // creating our ssl maker
         SSLSocketFactory sslSocketFactory =(SSLSocketFactory)SSLSocketFactory.getDefault();
         try {

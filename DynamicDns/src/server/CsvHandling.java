@@ -25,9 +25,9 @@ public class CsvHandling {
 
                     // let's compare the client values with the file values in terms of password and domain names
                     /*
-                    0:domain , 3:lastIp , 4:ip , 5:password
+                    0:domain ,1:lastPort,2:port, 3:lastIp , 4:ip , 5:password
 */
-                 /*   System.out.println("les valeurs 0 sont \n");
+                    System.out.println("les valeurs 0 sont \n");
                     System.out.println(""+values[0]+"  :  "+clientValues[0]);
                     System.out.println("les valeurs 1 sont \n");
                     System.out.println(""+values[1]+"  :  "+clientValues[1]);
@@ -38,10 +38,10 @@ public class CsvHandling {
                     System.out.println("les valeurs 4 sont \n");
                     System.out.println(""+values[4]+"  :  "+clientValues[4]);
                     System.out.println("les valeurs 5 sont \n");
-                    System.out.println(""+values[5]+"  :  "+clientValues[5]);*/
+                    System.out.println(""+values[5]+"  :  "+clientValues[5]);
+                    // to be tested
+                    if (values[0].equals(clientValues[0])&& values[5].equals(clientValues[5])&& values[2].equals(clientValues[2])) {
 
-
-                    if (values[0].equals(clientValues[0])&& values[5].equals(clientValues[5])) {
                         System.out.println("the domain and the password match\n");
                         // now let's see the ips
                         if (values[4].equals(clientValues[4])) {
