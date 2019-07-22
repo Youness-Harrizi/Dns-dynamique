@@ -8,7 +8,12 @@ import java.awt.event.ActionListener;
 public class TextingFrame extends JFrame {
     private JButton submit;
     private JTextField field;
-    private String text;
+    private String text="";
+
+    public String getText() {
+        return text;
+    }
+
     public TextingFrame(){
         super("SEND MESSAGES TO THE SERVER ");
         setSize(800,400);
@@ -39,5 +44,12 @@ public class TextingFrame extends JFrame {
             }
         });
 
+    }
+
+
+    // Test Test
+    public static void main(String[] args) {
+        TextingFrame textingFrame=new TextingFrame();
+        textingFrame.setVisible(true);
     }
 }

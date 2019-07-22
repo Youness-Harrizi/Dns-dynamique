@@ -16,7 +16,14 @@ public class Client {
     private  Socket client;
     private  HashMap<String,String> fileDomainMap;
     private Boolean bool=true;
-    public Boolean getBool() {
+    private String text;
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Boolean getBool()
+    {
         return bool;
     }
     // the max numbre of clients the server can handle
@@ -106,6 +113,21 @@ public class Client {
         }
 
     }
+    // for THE GUI
+    public  void sendSimpleMessages2(Socket socket, String text){
+        try {
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                    // sending the message to the server
+                    out.println(text);
+                    System.out.println(bufferedReader.readLine());
+
+    }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
 
     private void changeLastIpFile(String fileName) {
         try {
@@ -191,6 +213,12 @@ public class Client {
         }
         try {
             System.out.println("Server says " + in.readUTF());
+            /**
+             * while(true){
+             * sendSimpleMessages(client,text)????
+             * }
+             *
+             */
             sendSimpleMessages(client);
             client.close();
         }catch(EOFException e){
