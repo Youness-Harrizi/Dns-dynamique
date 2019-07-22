@@ -39,8 +39,10 @@ public class TextingFrame extends JFrame {
     private void initEvent(){
         submit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 text=field.getText();
+                System.out.println("Input has changed");
             }
         });
 

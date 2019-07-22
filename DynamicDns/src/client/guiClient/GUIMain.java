@@ -24,12 +24,13 @@ public class GUIMain {
                     }
             }
             Client client=new Client(f.getPort(),f.getServerName(),f.getPassword(),f.getDomainName());
-            TextingFrame textingFrame=new TextingFrame();
+        /*   TextingFrame textingFrame=new TextingFrame();
             textingFrame.setVisible(true);
             String text="";
             while(!text.equals("quit")){
                 try {
                     String text2=textingFrame.getText();
+
                     if(!text2.equals(text))
                     {
                         text=text2;
@@ -43,6 +44,7 @@ public class GUIMain {
                 }
 
             }
+            */
             if(client.getBool()) {
                 WelcomeFrame welcomeFrame = new WelcomeFrame(true);
                 welcomeFrame.setVisible(true);

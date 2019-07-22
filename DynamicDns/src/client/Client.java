@@ -1,5 +1,7 @@
 package client;
 
+import client.guiClient.TextingFrame;
+
 import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.InetAddress;
@@ -95,23 +97,47 @@ public class Client {
         try {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-                Scanner scanner = new Scanner(System.in);
-                while(true){
+                //Scanner scanner = new Scanner(System.in);
+                String text = "";
+                TextingFrame textingFrame = new TextingFrame();
+                textingFrame.setVisible(true);
+
+                    /*
                     System.out.println("Enter something:");
                     String inputLine = scanner.nextLine();
                     if(inputLine.equals("q")){
                         break;
+                    }*/
+                    while(true) {
+                        String text2 = textingFrame.getText();
+                        //System.out.println(text2);
+                        if (!text2.equals(text)) {
+                            //System.out.println("I am here 2");
+                            text = text2;
+                            out.println(text);
+                            System.out.println(bufferedReader.readLine());
+                        }
+
+
+                        if (text.equals("quit")) {
+                            System.out.println("I am ready to quit");
+                            break;
+
+
+
+                            // sending the message to the server
+
+
+                        }
                     }
-                    // sending the message to the server
-                    out.println(inputLine);
-                    System.out.println(bufferedReader.readLine());
-                }
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
         }
-
     }
     // for THE GUI
     public  void sendSimpleMessages2(Socket socket, String text){
