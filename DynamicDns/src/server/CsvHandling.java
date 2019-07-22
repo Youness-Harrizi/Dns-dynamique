@@ -27,7 +27,7 @@ public class CsvHandling {
                     /*
                     0:domain , 3:lastIp , 4:ip , 5:password
 */
-                    System.out.println("les valeurs 0 sont \n");
+                 /*   System.out.println("les valeurs 0 sont \n");
                     System.out.println(""+values[0]+"  :  "+clientValues[0]);
                     System.out.println("les valeurs 1 sont \n");
                     System.out.println(""+values[1]+"  :  "+clientValues[1]);
@@ -38,7 +38,7 @@ public class CsvHandling {
                     System.out.println("les valeurs 4 sont \n");
                     System.out.println(""+values[4]+"  :  "+clientValues[4]);
                     System.out.println("les valeurs 5 sont \n");
-                    System.out.println(""+values[5]+"  :  "+clientValues[5]);
+                    System.out.println(""+values[5]+"  :  "+clientValues[5]);*/
 
 
                     if (values[0].equals(clientValues[0])&& values[5].equals(clientValues[5])) {
