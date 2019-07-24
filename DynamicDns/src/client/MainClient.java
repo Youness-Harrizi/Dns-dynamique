@@ -20,7 +20,7 @@ public class MainClient {
         password=scanner.nextLine();
         Console console = System.console();
         if(console==null) System.out.println("CONSOLE EST NULLE");
-        Client client=new Client(5555,serverName,password,domain);
+       // Client client=new Client(5555,serverName,password,domain);
         System.out.println(InetAddress.getLocalHost().getHostAddress());
 
 

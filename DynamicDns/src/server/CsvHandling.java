@@ -27,23 +27,22 @@ public class CsvHandling {
                     /*
                     0:domain ,1:lastPort,2:port, 3:lastIp , 4:ip , 5:password
 */
-                    System.out.println("les valeurs 0 sont \n");
+                    System.out.println("les domaines sont \n");
                     System.out.println(""+values[0]+"  :  "+clientValues[0]);
-                    System.out.println("les valeurs 1 sont \n");
+                    System.out.println("les lastPorts(échangeable avec interne port) 1 sont \n");
                     System.out.println(""+values[1]+"  :  "+clientValues[1]);
-                    System.out.println("les valeurs 2 sont \n");
+                    System.out.println("les ports serveurs sont \n");
                     System.out.println(""+values[2]+"  :  "+clientValues[2]);
-                    System.out.println("les valeurs 3 sont \n");
+                    System.out.println("les lastIps sont \n");
                     System.out.println(""+values[3]+"  :  "+clientValues[3]);
-                    System.out.println("les valeurs 4 sont \n");
+                    System.out.println("les CurentIps sont \n");
                     System.out.println(""+values[4]+"  :  "+clientValues[4]);
-                    System.out.println("les valeurs 5 sont \n");
+                    System.out.println("les passwords sont \n");
                     System.out.println(""+values[5]+"  :  "+clientValues[5]);
-                    // to be tested
+                    // condition nécessaire: même domaine, password , et port serveur
                     if (values[0].equals(clientValues[0])&& values[5].equals(clientValues[5])&& values[2].equals(clientValues[2])) {
-
                         System.out.println("the domain and the password match\n");
-                        // now let's see the ips
+                        // now let's compare the ips
                         if (values[4].equals(clientValues[4])) {
                             System.out.println("ip didn't change");
                             scanner.close();
@@ -63,8 +62,6 @@ public class CsvHandling {
                             updateDataServer(fileName, clientValues, compteur, values[0]);
                             scanner.close();
                             return true;
-                        }else {
-                            return false;
                         }
 
                         // continue
@@ -74,12 +71,13 @@ public class CsvHandling {
                 }
                 scanner.close();
 
+
             } catch (IOException e){
                 e.printStackTrace();
 
             }
-            return false;
 
+            return false;
 
         }
 

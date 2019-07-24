@@ -32,13 +32,14 @@ public class Client {
     // the max numbre of clients the server can handle
     public static int nbreClientsMax =1000;
 
-    private String serverName;
+    private InetAddress serverAddress;
+
 
     // constructor
 
-    public Client(int port, String serverName,String password,String domain) throws IOException {
+    public Client(int port, InetAddress serverAddress,String password,String domain) throws IOException {
 
-        this.serverName = serverName;
+        this.serverAddress = serverAddress;
         this.lastPort=port;
         this.port = port;
         this.password=password;
@@ -55,24 +56,25 @@ public class Client {
         }
         else {
             this.setParameters("src/client/clients/"+path);
-            initClient(port, serverName, password, domain);
+            initClient(port, serverAddress, password, domain);
         }
 
     }
 
 
 
-    public void initClient(int port, String serverName, String password, String domain) {
+    public void initClient(int port, InetAddress serverAddress, String password, String domain) {
 
 
         // creating our ssl maker
         SSLSocketFactory sslSocketFactory =(SSLSocketFactory)SSLSocketFactory.getDefault();
         try {
 
-            System.out.println("Connecting to " + serverName + " on port " + port);
+            System.out.println("Connecting to " + serverAddress + " on port " + port);
             // ssl client
             try {
-                client = sslSocketFactory.createSocket(serverName, port);
+                // donner l'addresse du serveur 127.0.0.1
+                client = sslSocketFactory.createSocket(serverAddress,port);
             }catch (Exception e){
                 System.err.println("The server name that you've put isn't valid");
                 System.exit(0);

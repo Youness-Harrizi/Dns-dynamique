@@ -2,6 +2,8 @@ package client.guiClient;
 
 import client.Client;
 
+import java.net.InetAddress;
+
 
 public class GUIMain {
     /**
@@ -22,7 +24,8 @@ public class GUIMain {
                     break;
                     }
             }
-            Client client=new Client(f.getPort(),f.getServerName(),f.getPassword(),f.getDomainName());
+            Client client=new Client(f.getPort(), InetAddress.getByName(f.getServerName()),f.getPassword(),f.getDomainName());
+            // change se
 
             if(client.getBool()) {
                 WelcomeFrame welcomeFrame = new WelcomeFrame(true);
